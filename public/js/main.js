@@ -16,7 +16,7 @@ onLoadCSS = function(e) {
       link.href = val;
       link.media = 'all';
       head.appendChild(link);
-      document.styleSheets[0].remove;
+      delete document.styleSheets[0];
     }
   }
 }
