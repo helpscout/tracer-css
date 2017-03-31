@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tracer | Style Tracker</title>
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body style="padding: 20px; min-width: auto; height: auto;">
+    Enter some selectors, then press "Enter":<br>
+    <input type="text" value="#tkContent .messageBody .meta p.workflow a" id="selector-generator" placeholder=".sidebar button" onkeyup="onKeyUp(event)" style="width: 70%;">
+    <br>
+    <br>
+    <small>Styles:</small>
+    <hr>
+    <div id="render-zone" style="display: none"></div>
+    <div id="style-zone" style="padding-bottom: 20px;"></div>
+    <script src="/js/emmet.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
