@@ -2,6 +2,7 @@ console.log('Tracer!');
 const emmet = window.Emmet;
 const renderZone = document.getElementById('render-zone');
 const styleZone = document.getElementById('style-zone');
+const markupZone = document.getElementById('markup-zone');
 
 onKeyUp = function(e) {
   if (e.key === 'Enter' || e.keyCode === 13) {
@@ -72,7 +73,16 @@ render = function(selectors) {
   renderZone.appendChild(selectors);
   const el = getChildNode(renderZone.childNodes[0]);
   const styles = getStyles(el);
+  renderMarkup(selectors);
   renderStyles(styles);
+}
+
+renderMarkup = function(selectors) {
+  markupZone.innerHTML = '';
+  const markup = html_beautify(renderZone.innerHTML, { 
+    indent_size: 2,
+  });
+  markupZone.innerText = markup;
 }
 
 renderStyles = function(styles) {

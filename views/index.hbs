@@ -9,10 +9,12 @@
     <input type="text" value="#tkContent .messageBody .meta p.workflow a" id="selector-generator" placeholder=".sidebar button" onkeyup="onKeyUp(event)" style="width: 70%;">
     <br>
     <br>
-    <small>Styles:</small>
-    <hr>
-    <div id="render-zone" style="display: none"></div>
+    <small>Markup:</small><br>
+    <pre id="markup-zone" style="font-family: Monospace;"></pre>
+    <small>Styles:</small><br>
     <div id="style-zone" style="padding-bottom: 20px;"></div>
+    <div id="render-zone" style="display: none"></div>
+    <script src="/js/beautify-html.js"></script>
     <script src="/js/emmet.js"></script>
     <script src="/js/main.js"></script>
   </body>
