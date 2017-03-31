@@ -20,11 +20,13 @@ generateSelectors = function(input) {
     return false;
   }
   const selectors = input
-    .replace(/\ >\ /g, '')
-    .replace(/>/g, '')
+    .replace(/\ > \ /g, ' ')
+    .replace(/>/g, ' ')
+    .replace(/\ \ \ \ /g, ' ')
     .replace(/\ \ \ /g, ' ')
     .replace(/\ \ /g, ' ')
     .replace(/\ /g, ' > ');
+  console.log(`rendered: ${selectors}`);
   const el = emmet(selectors);
   render(el);
 }
