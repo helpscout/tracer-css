@@ -4,6 +4,23 @@ const renderZone = document.getElementById('render-zone');
 const styleZone = document.getElementById('style-zone');
 const markupZone = document.getElementById('markup-zone');
 
+onLoadCSS = function(e) {
+  if (e.key === 'Enter' || e.keyCode === 13) {
+    const target = e.target;
+    const val = target.value;
+    if (val.length) {
+      const head  = document.getElementsByTagName('head')[0];
+      const link  = document.createElement('link');
+      link.rel  = 'stylesheet';
+      link.type = 'text/css';
+      link.href = val;
+      link.media = 'all';
+      head.appendChild(link);
+      document.styleSheets[0].remove;
+    }
+  }
+}
+
 onKeyUp = function(e) {
   if (e.key === 'Enter' || e.keyCode === 13) {
     const target = e.target;
