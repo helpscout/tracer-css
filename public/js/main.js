@@ -7,7 +7,11 @@ onKeyUp = function(e) {
   if (e.key === 'Enter' || e.keyCode === 13) {
     const target = e.target;
     const val = target.value;
-    generateSelectors(val);
+    if (val.length) {
+      generateSelectors(val);
+    } else {
+      styleZone.innerHTML = '';
+    }
   }
 }
 
