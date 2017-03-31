@@ -19,7 +19,7 @@ generateSelectors = function(input) {
   if (!input) {
     return false;
   }
-  const selectors = input
+  const selectors = input.trim()
     .replace(/\ > \ /g, ' ')
     .replace(/>/g, ' ')
     .replace(/\ \ \ \ /g, ' ')
