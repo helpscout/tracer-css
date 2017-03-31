@@ -12,6 +12,7 @@ onKeyUp = function(e) {
       generateSelectors(val);
     } else {
       styleZone.innerHTML = '';
+      markupZone.innerHTML = '';
     }
   }
 }
