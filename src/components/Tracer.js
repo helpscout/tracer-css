@@ -23,7 +23,9 @@ class Tracer extends React.Component {
 
   blink() {
     this.blinkEl.innerHTML = '';
-    this.blinkEl.appendChild(this.props.markup);
+    if (this.props.markup) {
+      this.blinkEl.appendChild(this.props.markup);
+    }
   }
 
   getChildNode(nodes) {
@@ -61,6 +63,9 @@ class Tracer extends React.Component {
   }
 
   recall() {
+    if (!this.props.markup) {
+      return [];
+    }
     const el = this.getChildNode(this.blinkEl.childNodes[0]);
     const styles = this.getStyles(el);
     return styles;
@@ -89,7 +94,7 @@ class Tracer extends React.Component {
 
 Tracer.propTypes = {
   handleStyleProps: React.PropTypes.func.isRequired,
-  markup: React.PropTypes.any.isRequired,
+  markup: React.PropTypes.any,
 };
 
 export default Tracer;
