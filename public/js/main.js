@@ -4,6 +4,8 @@ const renderZone = document.getElementById('render-zone');
 const styleZone = document.getElementById('style-zone');
 const markupZone = document.getElementById('markup-zone');
 
+window.stylesCache = document.styleSheets[0];
+
 onLoadCSS = function(e) {
   if (e.key === 'Enter' || e.keyCode === 13) {
     const target = e.target;
@@ -16,7 +18,7 @@ onLoadCSS = function(e) {
       link.href = val;
       link.media = 'all';
       head.appendChild(link);
-      delete document.styleSheets[0];
+      window.styleCache = Object.assign({}, document.styleSheets[document.styleSheets.length - 1]);
     }
   }
 }
@@ -71,16 +73,15 @@ getProps = function(rule) {
 }
 
 getStyles = function(el) {
-  const sheets = document.styleSheets;
+  const sheets = window.stylesCache;
+  console.log(sheets);
   const styles = [];
   let props = [];
-  for (var i in sheets) {
-    const rules = sheets[i].rules || sheets[i].cssRules;
-    for (var r in rules) {
-      if (el.matches(rules[r].selectorText)) {
-        props = props.concat(getProps(rules[r]));
-        styles.push(rules[r].cssText);
-      }
+  const rules = sheets.rules || sheets.cssRules;
+  for (var r in rules) {
+    if (el.matches(rules[r].selectorText)) {
+      props = props.concat(getProps(rules[r]));
+      styles.push(rules[r].cssText);
     }
   }
   return props;
