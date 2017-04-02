@@ -8,7 +8,7 @@ class App extends React.Component {
     super();
     this.state = {
       markup: false,
-      styleProps: false,
+      styleProps: [],
     };
 
     this.handleMarkup = this.handleMarkup.bind(this);
