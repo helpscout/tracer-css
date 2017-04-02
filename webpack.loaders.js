@@ -2,7 +2,7 @@ module.exports = [
   {
     test: /\.jsx?$/,
     exclude: /(node_modules|bower_components|public\/)/,
-    loader: 'babel-loader?presets[]=react,presets[]=es2015',
+    loader: 'babel-loader',
   },
   {
     test: /\.css$/,
