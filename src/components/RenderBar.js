@@ -24,7 +24,7 @@ const RenderBar = (props) => {
   }
 
   return (
-    <div>
+    <div className="js-render-bar">
       <input
         onKeyPress={handleKeyPress}
         placeholder="article.post ul li a"

@@ -1,8 +1,8 @@
 import React from 'react';
-import '../styles/index.scss';
 import Inspector from './components/Inspector';
-import RenderBar from './components/RenderBar';
 import Markup from './components/Markup';
+import RenderBar from './components/RenderBar';
+import StyleLoader from './components/StyleLoader';
 import Tracer from './components/Tracer';
 
 class App extends React.Component {
@@ -19,6 +19,7 @@ class App extends React.Component {
 
     this.handleMarkup = this.handleMarkup.bind(this);
     this.handleStyleProps = this.handleStyleProps.bind(this);
+    this.handleStylesheetReload = this.handleStylesheetReload.bind(this);
   }
 
   componentWillMount() {
@@ -44,16 +45,25 @@ class App extends React.Component {
     });
   }
 
+  handleStylesheetReload(stylesheet) {
+    console.log('Styles loaded:', stylesheet.href);
+    this.setState({stylesheet});
+  }
+
   render() {
     const handleMarkup = this.handleMarkup;
     const handleStyleProps = this.handleStyleProps;
+    const handleStylesheetReload = this.handleStylesheetReload;
     const markup = this.state.markup;
     const markupString = this.state.markupString;
     const styleProps = this.state.styleProps;
     const stylesheet = this.state.stylesheet;
 
     return (
-      <div>
+      <div className="js-tracer-app">
+        <StyleLoader
+          handleStylesheetReload={handleStylesheetReload}
+        />
         <RenderBar
           handleMarkup={handleMarkup}
         />

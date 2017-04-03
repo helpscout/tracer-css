@@ -1,32 +1,45 @@
 import React from 'react';
 
 const StyleLoader = (props) => {
-  const sanitizeSelectors = (selectors) => {
-    return selectors.trim()
-      .replace(/\ > \ /g, ' ')
-      .replace(/>/g, ' ')
-      .replace(/\ \ \ \ /g, ' ')
-      .replace(/\ \ \ /g, ' ')
-      .replace(/\ \ /g, ' ')
-      .replace(/\ /g, ' > ');
+  const removeStylesheets = () => {
+    const stylesheets = document.querySelectorAll('head > link');
+    stylesheets.forEach(s => s.parentNode.removeChild(s));
   }
 
-  const renderSelectors = (selectors) => {
-    const markup = window.Emmet(sanitizeSelectors(selectors));
-    props.handleMarkup(markup);
+  const getStylesheetRules = () => {
+    return document.styleSheets[document.styleSheets.length - 1];
+  }
+
+  const loadStylesheet = (url) => {
+    if (!url.length) {
+      return false;
+    }
+    const head  = document.getElementsByTagName('head')[0];
+    const link  = document.createElement('link');
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = url;
+    link.media = 'all';
+    head.appendChild(link);
+
+    // Wait for the browser to actually load the external stylesheet
+    link.onload = () => {
+      props.handleStylesheetReload(getStylesheetRules());
+      removeStylesheets();
+    }
   }
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && e.target.value.length) {
-      renderSelectors(e.target.value);
+      loadStylesheet(e.target.value);
     }
   }
 
   return (
-    <div>
+    <div className="js-style-loader">
       <input
         onKeyPress={handleKeyPress}
-        placeholder="article.post ul li a"
+        placeholder="https://www.helpscout.net/css/launch.css"
         style={{width: '100%'}}
         type="text"
       />
@@ -35,7 +48,7 @@ const StyleLoader = (props) => {
 };
 
 StyleLoader.propTypes = {
-  handleMarkup: React.PropTypes.func,
+  handleStylesheetReload: React.PropTypes.func,
 };
 
 export default StyleLoader;
