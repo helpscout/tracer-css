@@ -49,6 +49,7 @@ class RenderBar extends React.Component {
           ref={(el) => { this.inputEl = el; }}
           style={{width: '100%'}}
           type="text"
+          value="#subjectLine #notyContainer .noty_buttons > button"
         />
       </div>
     );
