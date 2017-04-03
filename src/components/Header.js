@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <div className="js-header u-mrg-v-4">
+    <div className="js-header u-mrg-v-4 u-pad-t-4@md">
       <div className="o-flexy">
         <div className="o-flexy__item">
           <h1 className="tx-h4">

@@ -66,7 +66,7 @@ class App extends React.Component {
 
     return (
       <div className="js-tracer-app">
-        <div className="o-container u-pad-v-5 u-mrg-v-2">
+        <div className="o-container u-pad-v-2">
           <div className="o-row">
             <div className="o-col-8@md o-col-offset-2@md">
               <Header />
