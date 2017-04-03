@@ -1,6 +1,6 @@
 # Tracer
 
-Traces and lists the CSS properties of any given selector (Currently only setup with `hs-app`)
+Traces and lists the CSS properties of any given selector.
 
 ## Getting Started
 
