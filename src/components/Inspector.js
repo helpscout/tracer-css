@@ -38,14 +38,35 @@ class Inspector extends React.Component {
 
   render() {
     const styleProps = this.styleProps();
+
+    let content = (
+      styleProps.map((p, index) => (
+        <InspectorProp
+        key={index + 1}
+        styleProp={p}
+        />
+      ))
+    );
+    if (!styleProps.length) {
+      return (
+        <div className="js-inspector"></div>
+      );
+      // content = (
+      //   <div className="tx-center">
+      //     <div className="u-pad-v-7">
+      //       <h3 className="u-op-4 tx-h3 tx-300">Couldn't find a trace</h3>
+      //       <span className="tx-sm u-op-2">Try using a different selector.</span>
+      //     </div>
+      //   </div>
+      // )
+    }
+
     return (
       <div className="js-inspector">
-        {styleProps.map((p, index) => (
-          <InspectorProp
-            key={index + 1}
-            styleProp={p}
-          />
-        ))}
+        <div className="u-pad-v-1">
+          <span className="tx-10 tx-uppercase u-op-4">Inspector</span>
+        </div>
+        {content}
       </div>
     );
   }

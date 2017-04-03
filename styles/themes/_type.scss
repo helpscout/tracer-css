@@ -1,0 +1,10 @@
+// Themes :: Type
+
+// Dependencies
+@import "../configs/color";
+
+.t-tx {
+  &-orange {
+    color: $color-main !important;
+  }
+}

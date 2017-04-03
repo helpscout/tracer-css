@@ -18,9 +18,9 @@ class InspectorProp extends React.Component {
     return (
       <div className="js-inspector-prop" style={{fontFamily: 'monospace'}}>
         <span style={strikeStyle}>
-          <span style={{color: '#c80000'}}>{p.prop}</span>: {p.value}
+          <span className="t-tx-orange">{p.prop}</span>: {p.value}
         </span>
-        <span style={{opacity: '0.2', paddingLeft: '12px'}}>{p.selector}</span>
+        <span className="u-op-2 u-pad-l-3">{p.selector}</span>
       </div>
     );
   }

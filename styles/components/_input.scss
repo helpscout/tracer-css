@@ -1,0 +1,51 @@
+// Components :: Input
+
+.c-input {
+  @import "../configs/color";
+  $box-shadow: 0 2px 4px rgba(black, 0.2) inset, 0 1px 0 lighten($color-bg, 8);
+
+  border: 1px solid darken($color-bg, 8);
+  box-shadow: $box-shadow;
+  color: $color-text;
+  transition: all 0.2s ease;
+
+  &::placeholder {
+    color: rgba($color-text, 0.2);
+  }
+
+  &--pulse {
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+  }
+
+  &--pulse-sm {
+    animation-name: pulse-sm;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: $box-shadow, 0 0 0 0 $color-main;
+    }
+    30% {
+      box-shadow: $box-shadow, 0 0 10px 1px $color-main;
+    }
+    100% {
+      box-shadow: $box-shadow, 0 0 0 0 $color-main;
+    }
+  }
+
+  @keyframes pulse-sm {
+    0% {
+      box-shadow: $box-shadow, 0 0 0 0 $color-main;
+    }
+    30% {
+      box-shadow: $box-shadow, 0 0 4px 1px $color-main;
+    }
+    100% {
+      box-shadow: $box-shadow, 0 0 0 0 $color-main;
+    }
+  }
+}

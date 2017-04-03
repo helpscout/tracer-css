@@ -1,0 +1,13 @@
+// Components :: Card
+
+.c-card {
+  @import "../configs/color";
+
+  background-color: darken($color-bg, 4);
+
+  &__block {
+    & + & {
+      border-top: 1px solid darken($color-bg, 8);
+    }
+  }
+}

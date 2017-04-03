@@ -1,0 +1,12 @@
+// Components :: Link
+
+.c-link {
+  @import "../configs/color";
+
+  &--plain {
+    color: $color-text;
+    &:hover {
+      color: $color-text;
+    }
+  }
+}

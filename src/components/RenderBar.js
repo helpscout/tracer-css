@@ -1,8 +1,13 @@
 import React from 'react';
 import Emmet from 'emmetjs';
 
-const RenderBar = (props) => {
-  const sanitizeSelectors = (selectors) => {
+class RenderBar extends React.Component {
+  constructor() {
+    super();
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  sanitizeSelectors(selectors) {
     return selectors.trim()
       .replace(/\ > \ /g, ' ')
       .replace(/>/g, ' ')
@@ -12,27 +17,42 @@ const RenderBar = (props) => {
       .replace(/\ /g, ' > ');
   }
 
-  const renderSelectors = (selectors) => {
-    const markup = window.Emmet(sanitizeSelectors(selectors));
-    props.handleMarkup(markup);
+  renderSelectors(selectors) {
+    const markup = window.Emmet(this.sanitizeSelectors(selectors));
+    this.props.handleMarkup(markup);
   }
 
-  const handleKeyPress = (e) => {
+  animate() {
+    this.inputEl.classList.add('c-input--pulse-sm');
+  }
+
+  resetAnimation() {
+    this.inputEl.classList.remove('c-input--pulse-sm');
+  }
+
+  handleKeyPress(e) {
+    this.resetAnimation();
     if (e.key === 'Enter' && e.target.value.length) {
-      renderSelectors(e.target.value);
+      this.renderSelectors(e.target.value);
+      this.animate();
     }
   }
 
-  return (
-    <div className="js-render-bar">
-      <input
-        onKeyPress={handleKeyPress}
-        placeholder="article.post ul li a"
-        style={{width: '100%'}}
-        type="text"
-      />
-    </div>
-  );
+  render() {
+    const handleKeyPress = this.handleKeyPress;
+    return (
+      <div className="js-render-bar">
+        <input
+          className="c-input"
+          onKeyUp={handleKeyPress}
+          placeholder="Selector: article.post ul li a"
+          ref={(el) => { this.inputEl = el; }}
+          style={{width: '100%'}}
+          type="text"
+        />
+      </div>
+    );
+  }
 };
 
 RenderBar.propTypes = {

@@ -17,7 +17,20 @@
     "node-sass": "^4.3.0",
     "react": "15.4.2",
     "react-dom": "15.4.2",
-    "sass-loader": "^6.0.2"
+    "sass-loader": "^6.0.2",
+    "seed-button": "0.1.16",
+    "seed-card": "0.1.0",
+    "seed-flexy": "0.3.0",
+    "seed-grid": "0.4.0",
+    "seed-harvester": "0.1.5",
+    "seed-hr": "0.0.3",
+    "seed-input": "0.0.7",
+    "seed-link": "0.0.3",
+    "seed-opacity": "0.0.2",
+    "seed-packer": "0.0.10",
+    "seed-reset": "0.1.2",
+    "seed-spacing": "0.4.3",
+    "seed-typography": "0.4.8"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
