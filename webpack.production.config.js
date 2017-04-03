@@ -4,10 +4,19 @@ var loaders = require('./webpack.loaders');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var harvester = require('seed-harvester');
+var packer = require('seed-packer');
+
+packer();
 
 loaders.push({
   test: /\.scss$/,
-  loader: ExtractTextPlugin.extract({fallback: 'style-loader', use : 'css-loader?sourceMap&localIdentName=[local]___[hash:base64:5]!sass-loader?outputStyle=expanded'}),
+  loaders: ['style-loader', 'css-loader?importLoaders=1', {
+    loader: 'sass-loader',
+    options: {
+      includePaths: harvester([]),
+    }
+  }],
   exclude: ['node_modules']
 });
 
