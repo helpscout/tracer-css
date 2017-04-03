@@ -36,14 +36,16 @@ class Tracer extends React.Component {
   }
 
   getStyles(el) {
-    const sheets = document.styleSheets[0];
+    const sheets = this.props.stylesheet;
     const styles = [];
     let props = [];
-    const rules = sheets.rules || sheets.cssRules;
-    for (var r in rules) {
-      if (el.matches(rules[r].selectorText)) {
-        props = props.concat(this.getStyleProps(rules[r]));
-        styles.push(rules[r].cssText);
+    if (sheets.rules.length) {
+      const rules = sheets.rules || sheets.cssRules;
+      for (var r in rules) {
+        if (el.matches(rules[r].selectorText)) {
+          props = props.concat(this.getStyleProps(rules[r]));
+          styles.push(rules[r].cssText);
+        }
       }
     }
     return props;
@@ -67,8 +69,12 @@ class Tracer extends React.Component {
       return [];
     }
     const el = this.getChildNode(this.blinkEl.childNodes[0]);
-    const styles = this.getStyles(el);
-    return styles;
+    const styleProps = this.getStyles(el);
+    const markupString = this.blinkEl.innerHTML;
+    return {
+      markupString,
+      styleProps,
+    }
   }
 
   pulse() {
@@ -95,6 +101,7 @@ class Tracer extends React.Component {
 Tracer.propTypes = {
   handleStyleProps: React.PropTypes.func.isRequired,
   markup: React.PropTypes.any,
+  stylesheet: React.PropTypes.object,
 };
 
 export default Tracer;

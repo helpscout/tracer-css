@@ -1,7 +1,6 @@
 import React from 'react';
-import Emmet from 'emmetjs';
 
-const RenderBar = (props) => {
+const StyleLoader = (props) => {
   const sanitizeSelectors = (selectors) => {
     return selectors.trim()
       .replace(/\ > \ /g, ' ')
@@ -35,8 +34,8 @@ const RenderBar = (props) => {
   );
 };
 
-RenderBar.propTypes = {
+StyleLoader.propTypes = {
   handleMarkup: React.PropTypes.func,
 };
 
-export default RenderBar;
+export default StyleLoader;
