@@ -38,9 +38,9 @@ class Tracer extends React.Component {
   getStyles(el) {
     const sheets = this.props.stylesheet;
     const styles = [];
+    const rules = sheets.rules || sheets.cssRules;
     let props = [];
-    if (sheets.rules.length) {
-      const rules = sheets.rules || sheets.cssRules;
+    if (rules.length) {
       for (var r in rules) {
         if (el.matches(rules[r].selectorText)) {
           props = props.concat(this.getStyleProps(rules[r]));
